@@ -49,9 +49,9 @@ export function Gifts({ points }: { points: number }) {
   );
 }
 
-export function Leaderboard({ guests, myId, limit = 10, large = false }: { guests: Guest[]; myId?: string; limit?: number; large?: boolean }) {
+export function Leaderboard({ guests, myId, limit = 10, offset = 0, large = false }: { guests: Guest[]; myId?: string; limit?: number; offset?: number; large?: boolean }) {
   const t = useT();
-  const top = guests.filter((g) => g.points > 0).slice(0, limit);
+  const top = guests.filter((g) => g.points > 0).slice(offset, offset + limit);
   if (!top.length) return <p className="card p-5 text-center text-muted">No scores yet. The first point could be yours!</p>;
   return (
     <ol className="space-y-2">
@@ -60,7 +60,7 @@ export function Leaderboard({ guests, myId, limit = 10, large = false }: { guest
           key={g.id}
           className={`flex items-center gap-3 rounded-2xl px-3 py-2 ring-1 ${g.id === myId ? "bg-turmeric/15 ring-turmeric" : "bg-paper ring-gold/20"} ${large ? "py-3 text-2xl" : ""}`}
         >
-          <span className={`w-7 text-center font-serif font-semibold text-maroon ${large ? "w-12 text-3xl" : "text-lg"}`}>{i < 3 ? ["🥇", "🥈", "🥉"][i] : i + 1}</span>
+          <span className={`w-7 text-center font-serif font-semibold text-maroon ${large ? "w-12 text-3xl" : "text-lg"}`}>{i + offset < 3 ? ["🥇", "🥈", "🥉"][i + offset] : i + offset + 1}</span>
           <Avatar name={g.displayName} size={large ? 52 : 36} />
           <span className="min-w-0 flex-1 truncate font-medium">
             {g.displayName}
