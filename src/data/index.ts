@@ -1,17 +1,21 @@
 import type { DataStore } from "./store";
 import { LocalStore } from "./local-store";
-import { SupabaseStore } from "./supabase-store";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-export const isSupabaseConfigured = Boolean(url && key);
+export const isSupabaseConfigured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
 let instance: DataStore | null = null;
 
 /** Returns the active store: Supabase when configured, otherwise the in-browser demo store. */
 export function getStore(): DataStore {
-  if (!instance) instance = isSupabaseConfigured ? new SupabaseStore(url!, key!) : new LocalStore();
+  if (instance) return instance;
+  // The env check is inlined at build time, so the Supabase client is only bundled when it is configured.
+  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { SupabaseStore } = require("./supabase-store") as typeof import("./supabase-store");
+    instance = new SupabaseStore(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  } else {
+    instance = new LocalStore();
+  }
   return instance;
 }
 
