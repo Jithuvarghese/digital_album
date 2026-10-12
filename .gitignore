@@ -1,0 +1,23 @@
+node_modules/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+.DS_Store
+npm-debug.log*
+
+# env files
+.env*
+!.env.example
+
+# local tooling / editor config
+CLAUDE.md
+.claude/
+.vscode/
+.idea/
+
+# internal planning notes
+wedding-album-demo-prompt.md
