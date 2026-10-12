@@ -14,8 +14,8 @@ npm-debug.log*
 !.env.example
 
 # local tooling / editor config
-CLAUDE.md
-.claude/
+[Cc]LAUDE.md
+.[c]laude/
 .vscode/
 .idea/
 
