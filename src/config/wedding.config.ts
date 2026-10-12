@@ -433,8 +433,8 @@ export const weddingConfig = {
 
   gifts: [
     { id: "note", title: "A note from the couple", description: "A handwritten thank-you, just for players.", unlockAt: 30, kind: "note", href: "/films#note" },
-    { id: "bts", title: "Behind the scenes", description: "Never-seen photos from the engagement.", unlockAt: 70, kind: "photos", href: "/gallery?tab=couple" },
-    { id: "film", title: "The story film", description: "Our seven-year story, in three minutes.", unlockAt: 120, kind: "film", href: "/films#story" },
+    { id: "bts", title: "Behind the scenes", description: "Never-seen photos from the engagement.", unlockAt: 60, kind: "photos", href: "/gallery?tab=couple" },
+    { id: "film", title: "The story film", description: "Our seven-year story, in three minutes.", unlockAt: 100, kind: "film", href: "/films#story" },
   ] as Gift[],
 
   thankYou: {
