@@ -4,6 +4,7 @@ import { fontVariables } from "./fonts";
 import { weddingConfig } from "@/config/wedding.config";
 import { coupleTitle, siteUrl, themeCss } from "@/lib/site";
 import { Providers } from "@/components/providers";
+import { Shell } from "@/components/layout/shell";
 
 const description = `Join us for the wedding of ${coupleTitle} in Kochi on 15 November 2026. Schedule, photos, blessings and the Bride vs Groom game.`;
 
@@ -36,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <style dangerouslySetInnerHTML={{ __html: themeCss() }} />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers><Shell>{children}</Shell></Providers>
       </body>
     </html>
   );
