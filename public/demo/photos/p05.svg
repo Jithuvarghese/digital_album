@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" width="800" height="640">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#FFF4DD"/><stop offset="1" stop-color="#F2C14E" stop-opacity="0.55"/></linearGradient></defs>
+  <rect width="800" height="640" fill="url(#g)"/>
+  <circle cx="400" cy="352" r="140.8" fill="#F2C14E" opacity="0.85"/><path d="M0 448 Q400 384 800 460.79999999999995 L800 640 L0 640Z" fill="#B4532A" opacity="0.85"/>
+  <g transform="translate(400 524.8) scale(0.9142857142857143)" opacity="0.92">
+    <circle cx="-38" cy="-150" r="26" fill="#2B1C18"/>
+    <path d="M-80 0 Q-80 -110 -38 -118 Q4 -110 4 0Z" fill="#2B1C18"/>
+    <circle cx="38" cy="-160" r="27" fill="#3a2a22"/>
+    <path d="M-4 0 Q-4 -122 38 -128 Q82 -122 82 0Z" fill="#3a2a22"/>
+  </g>
+  
+  <rect x="0" y="614" width="800" height="26" fill="#F2C14E" opacity="0.9"/>
+  <rect x="0" y="608" width="800" height="3" fill="#F2C14E" opacity="0.6"/>
+  <text x="28" y="592" font-family="Georgia, serif" font-size="30" fill="#B4532A" opacity="0.85">Golden hour</text>
+</svg>
