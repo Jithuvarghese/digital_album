@@ -83,9 +83,6 @@ export function SiteHeader() {
         <div className="container-wide flex h-16 items-center gap-3">
           <Link href="/" className="flex min-h-[44px] items-center gap-2" aria-label="Home">
             <Monogram className="h-10 w-10" />
-            <span className="hidden font-serif text-lg text-maroon sm:inline">
-              {weddingConfig.groom.name} &amp; {weddingConfig.bride.name}
-            </span>
           </Link>
           <nav className="ml-6 hidden items-center gap-1 lg:flex" aria-label="Main">
             {nav.slice(1, 7).map((n) => (
