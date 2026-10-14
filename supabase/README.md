@@ -18,7 +18,7 @@ From **Project Settings → API**, copy the values into `.env.local` (locally) o
 | Variable | Where it is used |
 | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | Browser and server |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Browser (safe to expose, protected by RLS) |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` (or `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`) | Browser (safe to expose, protected by RLS) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server only, used by `/api/admin` for moderation |
 | `ADMIN_PASSCODE` | Server only, the passcode for the admin panel |
 
