@@ -41,7 +41,8 @@ let wakeTimer: ReturnType<typeof setTimeout> | undefined;
 
 export const useUploads = create<QueueState>((set, get) => ({
   items: [],
-  online: typeof navigator === "undefined" ? true : navigator.onLine,
+  // Assume online until the browser says otherwise, so server and client render the same markup
+  online: true,
   add: (files, meta) => {
     const items = files.map<UploadItem>((file) => ({
       id: uid(),

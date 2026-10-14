@@ -80,6 +80,10 @@ export function UploadView() {
   const challenge = weddingConfig.challenges.find((c) => c.id === challengeId) ?? null;
 
   useEffect(() => {
+    useUploads.setState({ online: navigator.onLine !== false });
+  }, []);
+
+  useEffect(() => {
     if (device.hydrated) {
       setName((n) => n || device.guestName);
       setTeam((tm) => tm ?? device.team);
