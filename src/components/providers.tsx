@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import type { Phase } from "@/config/wedding.config";
 import { startSettingsSync, useSettings } from "@/data/hooks";
+import { isSupabaseConfigured } from "@/data";
 import { useDevice } from "@/state/device";
 import { useUi } from "@/state/ui";
 import { Toast } from "@/components/ui/toast";
@@ -33,12 +34,16 @@ export function Providers({ children }: { children: React.ReactNode }) {
     }
     if (params.get("presenter") === "1") {
       try {
-        sessionStorage.removeItem("album-presenter");
+        sessionStorage.setItem("album-presenter", "1");
       } catch {}
     }
+    // Demo sites show the presenter menu unless hidden; connected sites only when opened with ?presenter=1
     try {
-      if (sessionStorage.getItem("album-presenter") === "0") useUi.getState().setPresenter(false);
-    } catch {}
+      const flag = sessionStorage.getItem("album-presenter");
+      useUi.getState().setPresenter(isSupabaseConfigured ? flag === "1" : flag !== "0");
+    } catch {
+      useUi.getState().setPresenter(!isSupabaseConfigured);
+    }
     return () => {
       stop();
     };

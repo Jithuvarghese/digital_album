@@ -11,7 +11,10 @@ import { useDevice } from "@/state/device";
 import { usePhase, useUi } from "@/state/ui";
 import { CloseIcon, SparkleIcon, TvIcon } from "@/components/ui/icons";
 
-/** Demo helper for sales presentations. Hidden with ?presenter=0 and never shown when Supabase is configured. */
+/**
+ * Demo helper for sales presentations. On demo sites it shows unless hidden with ?presenter=0;
+ * on sites connected to Supabase it only shows when opened with ?presenter=1, and changes stay on this device.
+ */
 export function PresenterMenu() {
   const visible = useUi((s) => s.presenter);
   const { phaseOverride, setPhaseOverride, showToast } = useUi();
@@ -21,9 +24,16 @@ export function PresenterMenu() {
   const sim = useSimulation();
   const [open, setOpen] = useState(false);
 
-  if (!visible || isSupabaseConfigured) return null;
+  if (!visible) return null;
+  const shared = isSupabaseConfigured;
 
   const setPhase = (p: Phase) => {
+    if (shared) {
+      // Preview only on this device; the real stage is set in the admin panel
+      setPhaseOverride(p);
+      if (window.location.pathname !== "/") window.location.href = "/";
+      return;
+    }
     setPhaseOverride(null);
     void getStore().updateSettings({ phase: p });
     if (window.location.pathname !== "/") window.location.href = "/";
@@ -61,6 +71,7 @@ export function PresenterMenu() {
               </div>
             </div>
 
+            {!shared && (
             <div>
               <p className="mb-1.5 text-xs text-jasmine/60">Theme</p>
               <div className="flex gap-1.5">
@@ -71,6 +82,8 @@ export function PresenterMenu() {
                 ))}
               </div>
             </div>
+
+            )}
 
             <div>
               <p className="mb-1.5 text-xs text-jasmine/60">Language</p>
@@ -87,6 +100,7 @@ export function PresenterMenu() {
               <a href="/live" target="_blank" rel="noopener" className="flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl bg-white/10 text-xs font-semibold hover:bg-white/20">
                 <TvIcon size={16} /> Live screen
               </a>
+              {!shared && (
               <button
                 className={`flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl text-xs font-semibold ${sim.running ? "bg-turmeric text-ink" : "bg-white/10 hover:bg-white/20"}`}
                 onClick={sim.toggle}
@@ -94,6 +108,7 @@ export function PresenterMenu() {
               >
                 <SparkleIcon size={16} /> {sim.running ? "Simulating…" : "Simulate guests"}
               </button>
+              )}
               <button
                 className="min-h-[44px] rounded-xl bg-white/10 text-xs font-semibold hover:bg-white/20"
                 onClick={() => {
@@ -103,6 +118,7 @@ export function PresenterMenu() {
               >
                 Replay intro
               </button>
+              {!shared && (
               <button
                 className="min-h-[44px] rounded-xl bg-white/10 text-xs font-semibold hover:bg-white/20"
                 onClick={async () => {
@@ -116,8 +132,9 @@ export function PresenterMenu() {
               >
                 Reset demo data
               </button>
+              )}
             </div>
-            <p className="text-[10px] leading-snug text-jasmine/50">Add ?presenter=0 to the link to hide this menu.</p>
+            <p className="text-[10px] leading-snug text-jasmine/50">{shared ? "Stage preview applies to this device only. Theme and the real stage are set in the admin panel." : "Add ?presenter=0 to the link to hide this menu."}</p>
           </motion.div>
         )}
       </AnimatePresence>

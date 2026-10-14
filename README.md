@@ -9,7 +9,7 @@ The demo ships with a fictional couple, **Karthik & Anjali**, marrying in Kochi 
 ## Features
 
 **Before the wedding**
-- Lamp loading screen and a "Tap to open" invitation with drifting jasmine
+- Loading screen and a "Tap to open" invitation with drifting jasmine, shown on each visit
 - Countdown to the muhurtham (switches to "Today!" and "Just married")
 - Story timeline and a "How we met" chat that reveals one message per tap
 - Meet the families, with a "Who's who" search
@@ -117,13 +117,14 @@ Query parameters:
 
 | Parameter | Effect |
 | --- | --- |
-| `?presenter=0` | Hides the presenter menu for this browser session (`?presenter=1` brings it back) |
+| `?presenter=0` | Hides the presenter menu for this browser session |
+| `?presenter=1` | Shows the presenter menu, including on a site connected to Supabase (stage preview, language, live screen, replay intro) |
 | `?phase=before\|during\|after` | Previews a stage on this device without changing the setting |
 | `/live?scenes=countdown,photos,blessings,scores,winner` | Chooses which scenes the live screen rotates through |
 
 On the live screen, press **F** for fullscreen and the arrow keys to change scene. The cursor is hidden and the screen is kept awake where the browser supports it.
 
-**Admin passcode (demo): `1511`**. In demo mode the passcode is checked in the browser, which is fine for a demo but not for a real wedding. With Supabase enabled, the passcode is checked on the server (`ADMIN_PASSCODE`) and never ships to the browser. The presenter menu is not shown when Supabase is configured.
+**Admin passcode (demo): `1511`**. In demo mode the passcode is checked in the browser, which is fine for a demo but not for a real wedding. With Supabase enabled, the passcode is checked on the server (`ADMIN_PASSCODE`) and never ships to the browser. When Supabase is configured the presenter menu is hidden unless the site is opened with `?presenter=1`.
 
 ## Enabling Supabase (shared, real-time data)
 

@@ -11,6 +11,9 @@ import { Jasmine, Monogram } from "@/components/ui/ornaments";
 
 type Stage = "loading" | "invite" | "done";
 
+// The invitation shows on every full page load, but not when moving between pages inside the site.
+let openedThisLoad = false;
+
 export function IntroGate() {
   const hydrated = useDevice((s) => s.hydrated);
   const introSeen = useDevice((s) => s.introSeen);
@@ -21,7 +24,8 @@ export function IntroGate() {
 
   useEffect(() => {
     if (!hydrated) return;
-    if (introSeen) {
+    if (!introSeen) openedThisLoad = false; // "Replay intro"
+    if (openedThisLoad) {
       setStage("done");
       return;
     }
@@ -38,6 +42,7 @@ export function IntroGate() {
   }, [stage]);
 
   const open = () => {
+    openedThisLoad = true;
     setStage("done");
     setIntroSeen(true);
     useMusic.getState().start();

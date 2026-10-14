@@ -24,7 +24,7 @@ let toastTimer: ReturnType<typeof setTimeout> | undefined;
 
 export const useUi = create<UiState>((set) => ({
   phaseOverride: null,
-  presenter: true,
+  presenter: false,
   adminUnlocked: false,
   toast: null,
   setPhaseOverride: (phaseOverride) => {
