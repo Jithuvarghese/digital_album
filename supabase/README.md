@@ -24,6 +24,22 @@ From **Project Settings → API**, copy the values into `.env.local` (locally) o
 
 Redeploy. The "Demo mode" badge disappears once the two public variables are present.
 
+## 3. Optional: load the sample data
+
+To make a connected site look lived-in for a presentation, load the demo couple's photos, blessings, guests, scores, RSVPs and capsule messages:
+
+```bash
+npm run seed:supabase
+```
+
+Re-running it refreshes the same rows instead of duplicating them. Before the real wedding, empty everything guests can add with:
+
+```bash
+npm run seed:supabase -- --clear
+```
+
+Both commands read `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` from `.env.local` or `.env`.
+
 ## How access works
 
 - Guests have no accounts. They can **add** photos, blessings, RSVPs, capsule messages, votes and quiz scores.
