@@ -14,7 +14,6 @@ import { TugOfWar } from "@/components/game/scoreboard";
 import { Celebration, Leaderboard } from "@/components/game/gifts-leaderboard";
 import { Countdown, useNow } from "@/components/home/hero";
 import { currentAndNextEvent } from "@/components/home/phase-blocks";
-import { Garland, Lamp } from "@/components/ui/ornaments";
 import { QrCode, useSiteUrl } from "@/components/ui/qr-code";
 
 export type Scene = "countdown" | "photos" | "blessings" | "scores" | "winner";
@@ -46,14 +45,12 @@ function CountdownScene() {
   return (
     <div className="flex h-full flex-col items-center justify-center text-center">
       <div className="flex items-end gap-16">
-        <Lamp className="h-72 w-44" />
         <div>
           <p className="text-3xl uppercase tracking-[0.4em] text-gold">{current ? "Now happening" : "Welcome to the wedding of"}</p>
           <h1 className="mt-6 font-serif text-[10rem] leading-none text-maroon">
             {current ? loc(current.name) : `${weddingConfig.groom.name} & ${weddingConfig.bride.name}`}
           </h1>
         </div>
-        <Lamp className="h-72 w-44" />
       </div>
       <div className="kasavu-line my-12 w-[600px]" />
       {current ? (
@@ -206,7 +203,6 @@ export function LiveScreen() {
 
   return (
     <Stage>
-      <Garland className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 w-full" />
       <AnimatePresence mode="wait">
         <motion.div
           key={scene + (highlight?.id ?? "")}

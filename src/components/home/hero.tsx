@@ -8,7 +8,6 @@ import { useSettings } from "@/data/hooks";
 import { formatDate } from "@/lib/text";
 import { usePhase, useLoc, useT } from "@/state/ui";
 import type { StringKey } from "@/lib/i18n";
-import { Garland, Lamp } from "@/components/ui/ornaments";
 import { BlessIcon, CalendarIcon, CameraIcon, CapsuleIcon, FilmIcon, MapIcon, TrophyIcon, TvIcon, HeartIcon } from "@/components/ui/icons";
 
 export function useNow(intervalMs = 1000) {
@@ -61,10 +60,9 @@ export function Hero() {
   const t = useT();
   return (
     <section className="relative overflow-hidden pb-10 pt-6 sm:pt-12">
-      <Garland className="pointer-events-none absolute inset-x-0 top-0 h-12 w-full opacity-80" />
+      <div aria-hidden className="motif pointer-events-none absolute inset-0" />
       <div className="container-narrow relative flex flex-col items-center text-center">
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="flex w-full items-end justify-center gap-4 pt-10">
-          <Lamp className="hidden h-28 w-16 sm:block" />
           <div>
             <p className="eyebrow">{phase === "after" ? t("hero.married") : phase === "during" ? t("during.live") : t("intro.invite")}</p>
             <h1 className="mt-3 font-serif text-[3.2rem] leading-[1.02] text-maroon sm:text-7xl">
@@ -73,7 +71,6 @@ export function Hero() {
               {weddingConfig.bride.name}
             </h1>
           </div>
-          <Lamp className="hidden h-28 w-16 sm:block" />
         </motion.div>
         <p className="mt-4 max-w-md font-serif text-xl italic text-ink/80">{loc(weddingConfig.tagline)}</p>
         <div className="kasavu-line my-6 w-32" />

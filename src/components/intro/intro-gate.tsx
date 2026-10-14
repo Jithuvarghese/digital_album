@@ -6,7 +6,7 @@ import { weddingConfig } from "@/config/wedding.config";
 import { useDevice } from "@/state/device";
 import { useT } from "@/state/ui";
 import { formatDate } from "@/lib/text";
-import { Garland, Jasmine, Lamp } from "@/components/ui/ornaments";
+import { Jasmine, Monogram } from "@/components/ui/ornaments";
 
 type Stage = "loading" | "invite" | "done";
 
@@ -55,7 +55,9 @@ export function IntroGate() {
           <AnimatePresence mode="wait">
             {stage === "loading" ? (
               <motion.div key="loading" className="flex flex-col items-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, y: -10 }}>
-                <Lamp className="h-40 w-24" />
+                <motion.div animate={reduce ? undefined : { scale: [1, 1.06, 1], opacity: [0.8, 1, 0.8] }} transition={{ repeat: Infinity, duration: 2.4 }}>
+                  <Monogram className="h-24 w-24" />
+                </motion.div>
                 <p className="mt-6 font-serif text-xl italic text-maroon" role="status">
                   {t("intro.loading")}
                 </p>
@@ -70,8 +72,8 @@ export function IntroGate() {
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 aria-label={`${t("intro.tap")}: ${weddingConfig.groom.name} & ${weddingConfig.bride.name}`}
               >
-                <Garland className="h-10 w-full" />
-                <p className="eyebrow mt-4">{t("intro.invite")}</p>
+                <div className="kasavu-line mt-6 w-full" />
+                <p className="eyebrow mt-6">{t("intro.invite")}</p>
                 <h1 className="mt-4 font-serif text-5xl leading-tight text-maroon">
                   {weddingConfig.groom.name}
                   <span className="block py-1 text-3xl italic text-gold">&amp;</span>
@@ -100,7 +102,7 @@ function Petals() {
   const reduce = useReducedMotion();
   const petals = useMemo(
     () =>
-      Array.from({ length: 14 }, (_, i) => ({
+      Array.from({ length: 8 }, (_, i) => ({
         left: (i * 37) % 100,
         delay: (i * 0.73) % 6,
         duration: 9 + (i % 5) * 1.6,
@@ -120,7 +122,7 @@ function Petals() {
           animate={{ y: ["0vh", "110vh"], x: [0, p.drift, 0], rotate: [0, 180, 360] }}
           transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "linear" }}
         >
-          <Jasmine size={p.size} className="opacity-80" />
+          <Jasmine size={p.size} className="opacity-50" />
         </motion.div>
       ))}
     </div>

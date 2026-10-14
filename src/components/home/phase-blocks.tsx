@@ -9,7 +9,7 @@ import { useLoc, useT } from "@/state/ui";
 import { Reveal, Section, Skeleton } from "@/components/ui/primitives";
 import { LiveScoreboard } from "@/components/game/scoreboard";
 import { CameraIcon, CapsuleIcon, FilmIcon, PrintIcon, TvIcon } from "@/components/ui/icons";
-import { Jasmine, Lamp } from "@/components/ui/ornaments";
+import { Jasmine } from "@/components/ui/ornaments";
 import { useNow } from "./hero";
 
 export function currentAndNextEvent(now: Date) {
@@ -30,7 +30,6 @@ export function NowHappening() {
         <Reveal>
           <div className="card overflow-hidden">
             <div className="flex items-center gap-4 bg-maroon p-5 text-jasmine">
-              <Lamp className="h-16 w-10" />
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-gold">{current ? t("during.live") : "Up next"}</p>
                 <p className="font-serif text-2xl">{current ? loc(current.name) : next ? loc(next.name) : "Celebrations continue"}</p>
