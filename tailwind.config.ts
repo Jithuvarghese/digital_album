@@ -22,7 +22,7 @@ const config: Config = {
         sans: ["var(--font-sans)", "var(--font-noto-ml)", "var(--font-noto-ta)", "var(--font-noto-te)", "var(--font-noto-kn)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        card: "0 1px 2px rgb(var(--c-ink) / 0.06), 0 8px 24px -12px rgb(var(--c-ink) / 0.18)",
+        card: "0 1px 2px rgb(var(--c-ink) / 0.04), 0 4px 10px -4px rgb(var(--c-ink) / 0.06), 0 18px 36px -20px rgb(var(--c-ink) / 0.22)",
       },
     },
   },

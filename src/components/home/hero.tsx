@@ -120,17 +120,17 @@ export function QuickActions() {
   const actions = byPhase[phase].filter((a) => !a.module || modules[a.module] !== false);
   return (
     <nav aria-label="Quick actions" className="container-wide">
-      <ul className="no-scrollbar -mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:justify-center sm:px-0">
+      <ul className="no-scrollbar -mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-3 pt-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
         {actions.map((a) => {
           const inner = (
             <>
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-maroon/10 text-maroon">
+              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-maroon/10 to-gold/20 text-maroon transition group-hover:from-maroon group-hover:to-maroon group-hover:text-jasmine">
                 <a.icon />
               </span>
-              <span className="text-xs font-semibold text-ink">{t(a.key)}</span>
+              <span className="flex h-8 items-center text-[12px] font-semibold leading-tight text-ink">{t(a.key)}</span>
             </>
           );
-          const cls = "card flex min-h-[96px] w-[92px] snap-start flex-col items-center justify-center gap-2 px-2 py-3 text-center transition hover:-translate-y-0.5";
+          const cls = "card group flex h-[112px] w-[104px] snap-start flex-col items-center justify-center gap-2 px-2 text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg";
           return (
             <li key={a.key} className="shrink-0">
               {a.external ? (

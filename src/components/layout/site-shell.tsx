@@ -79,7 +79,7 @@ export function SiteHeader() {
       <a href="#main" className="sr-only z-[90] rounded bg-maroon px-4 py-2 text-jasmine focus:not-sr-only focus:fixed focus:left-2 focus:top-2">
         Skip to content
       </a>
-      <header className={`no-print sticky top-0 z-40 transition ${scrolled ? "bg-ivory/90 shadow-sm backdrop-blur" : "bg-transparent"}`}>
+      <header className={`no-print sticky top-0 z-40 transition ${scrolled ? "border-b border-ink/[0.06] bg-ivory/85 backdrop-blur-md" : "border-b border-transparent bg-transparent"}`}>
         <div className="container-wide flex h-16 items-center gap-3">
           <Link href="/" className="flex min-h-[44px] items-center gap-2" aria-label="Home">
             <Monogram className="h-10 w-10" />
