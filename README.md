@@ -57,6 +57,7 @@ Other scripts:
 | `npm run start` | Serve the production build |
 | `npm run lint` | Lint |
 | `npm run typecheck` | TypeScript check |
+| `npm run seed:supabase` | Load the sample data into Supabase (`-- --clear` empties it) |
 | `node scripts/generate-demo-assets.mjs` | Regenerate the placeholder artwork in `public/demo/` |
 
 ## Setting up a wedding
@@ -89,6 +90,14 @@ The demo uses generated SVG artwork in `public/demo/`:
 | `public/demo/films/` | Film poster frames |
 
 Drop real JPG or WebP files into `public/` (any folder) and point the paths in `wedding.config.ts` at them. For family member photos, set the optional `photo` field.
+
+### Background music
+
+Music starts softly when a guest taps "open" on the invitation, with a floating button to pause it, and it pauses automatically while a film plays. Set `music` in the config:
+
+- `youtubeId`: the part after `watch?v=` in a YouTube link (played through a hidden player; `start` skips seconds)
+- `file`: an mp3 in `public/`, e.g. `/music/wedding.mp3`
+- neither: a gentle instrumental melody (raga Mohanam) is generated in the browser
 
 For films, put the video files in `public/films/` (or any video URL, e.g. from a CDN) and set `src` on the entries in `films` in the config. Set `storyMusic` to an audio file to replace the generated background music in the story preview.
 

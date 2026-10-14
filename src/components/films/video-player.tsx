@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useMusic } from "@/lib/music";
 import { ExpandIcon, PauseIcon, PlayIcon, VolumeIcon } from "@/components/ui/icons";
 
 const fmt = (s: number) => (Number.isFinite(s) ? `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}` : "0:00");
@@ -31,8 +32,14 @@ export function VideoPlayer({ src, poster, title }: { src: string; poster: strin
         preload="metadata"
         className="aspect-video w-full"
         onClick={toggle}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
+        onPlay={() => {
+          setPlaying(true);
+          useMusic.getState().hold(true);
+        }}
+        onPause={() => {
+          setPlaying(false);
+          useMusic.getState().hold(false);
+        }}
         onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
         aria-label={title}

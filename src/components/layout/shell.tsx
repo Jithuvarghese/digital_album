@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { BottomNav, DemoBadge, SiteFooter, SiteHeader } from "./site-shell";
 import { PresenterMenu } from "./presenter-menu";
+import { MusicToggle } from "./music-toggle";
 
 /** Wraps pages with header, nav and footer. The venue screen and print views get a bare layout. */
 export function Shell({ children }: { children: React.ReactNode }) {
@@ -18,6 +19,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <SiteFooter />
       <BottomNav />
       <PresenterMenu />
+      <MusicToggle />
     </>
   );
 }

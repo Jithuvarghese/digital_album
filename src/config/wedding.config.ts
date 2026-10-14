@@ -452,6 +452,14 @@ export const weddingConfig = {
   /** Background music for the story preview. Leave empty for a gentle generated tanpura-style drone. */
   storyMusic: "",
 
+  /**
+   * Background music, started when a guest taps "open" on the invitation.
+   * - youtubeId: the part after "watch?v=" in a YouTube link (plays through a hidden player). `start` skips seconds.
+   * - file: an mp3 in /public (e.g. "/music/wedding.mp3"), used when youtubeId is empty.
+   * With neither set, a soft instrumental melody is generated in the browser.
+   */
+  music: { youtubeId: "", start: 0, file: "", volume: 40 },
+
   theme: "kasavu" as ThemeName,
   themes: {
     kasavu: {

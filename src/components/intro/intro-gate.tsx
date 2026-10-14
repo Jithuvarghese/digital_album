@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { weddingConfig } from "@/config/wedding.config";
 import { useDevice } from "@/state/device";
+import { useMusic } from "@/lib/music";
 import { useT } from "@/state/ui";
 import { formatDate } from "@/lib/text";
 import { Jasmine, Monogram } from "@/components/ui/ornaments";
@@ -39,6 +40,7 @@ export function IntroGate() {
   const open = () => {
     setStage("done");
     setIntroSeen(true);
+    useMusic.getState().start();
     window.scrollTo({ top: 0 });
   };
 

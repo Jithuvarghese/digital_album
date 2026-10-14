@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { weddingConfig } from "@/config/wedding.config";
 import { useLoc } from "@/state/ui";
+import { useMusic } from "@/lib/music";
 import { ExpandIcon, PauseIcon, PlayIcon, VolumeIcon } from "@/components/ui/icons";
 
 const SLIDE_MS = 5500;
@@ -101,6 +102,11 @@ export function StoryFilm() {
   }, [playing, i, slides.length, stopAudio]);
 
   useEffect(() => stopAudio, [stopAudio]);
+
+  useEffect(() => {
+    useMusic.getState().hold(playing);
+    return () => useMusic.getState().hold(false);
+  }, [playing]);
 
   const toggle = () => {
     // Audio only starts from a tap, which respects browser autoplay rules.
