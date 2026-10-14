@@ -202,7 +202,10 @@ export class SupabaseStore implements DataStore {
   // Settings
   async getSettings(): Promise<Settings> {
     const { data } = await this.db.from("settings").select("*").eq("id", 1).maybeSingle();
-    return { ...defaultSettings(), ...(data ? toCamel<Partial<Settings>>(data) : {}) };
+    const defaults = defaultSettings();
+    const stored = data ? toCamel<Partial<Settings>>(data) : {};
+    // Sections missing from the stored list stay on (a new database stores an empty list)
+    return { ...defaults, ...stored, modulesEnabled: { ...defaults.modulesEnabled, ...(stored.modulesEnabled ?? {}) } };
   }
   async updateSettings(patch: Partial<Settings>) {
     await this.admin("settings", { patch: toSnake(patch) });
