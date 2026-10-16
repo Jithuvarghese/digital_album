@@ -122,7 +122,7 @@ export function CatchGame({ onPoints }: { onPoints: (n: number) => void }) {
         <div className="card mx-auto max-w-sm p-6 text-center">
           <p className="text-2xl">🍫</p>
           <h3 className="mt-2 font-serif text-2xl text-maroon">Catch the Treats!</h3>
-          <p className="mt-2 text-sm text-muted">Move the basket to catch falling chocolates and hearts. Don't miss the 💖!</p>
+          <p className="mt-2 text-sm text-muted">Move the basket to catch falling chocolates and hearts. Don&apos;t miss the 💖!</p>
           <button className="btn-primary mt-4 w-full" onClick={() => { setRunning(true); setCaught(0); setMissed(0); setTimeLeft(30); setItems([]); awardedRef.current = false; }}>
             Start Game
           </button>

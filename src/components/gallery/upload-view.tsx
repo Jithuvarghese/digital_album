@@ -116,7 +116,7 @@ export function UploadView() {
 
         {!online && (
           <p className="mx-auto mb-4 max-w-lg rounded-2xl bg-amber-50 px-4 py-3 text-sm text-ink ring-1 ring-amber-200">
-            📶 You're offline — photos will upload automatically when you reconnect.
+            📶 You&apos;re offline — photos will upload automatically when you reconnect.
           </p>
         )}
 
