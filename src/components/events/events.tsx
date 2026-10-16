@@ -8,6 +8,19 @@ import { Reveal, Section, SectionHeader } from "@/components/ui/primitives";
 import { CalendarIcon, ClockIcon, MapIcon } from "@/components/ui/icons";
 import { useNow } from "@/components/home/hero";
 
+/** Build a Google Calendar add-event URL for a single event. */
+function googleCalUrl(e: WeddingEvent, title: string, description: string): string {
+  const fmt = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+  const p = new URLSearchParams({
+    action: "TEMPLATE",
+    text: title,
+    dates: `${fmt(e.start)}/${fmt(e.end)}`,
+    details: description,
+    location: `${e.venue}, ${e.address}`,
+  });
+  return `https://calendar.google.com/calendar/render?${p.toString()}`;
+}
+
 export function Events() {
   const t = useT();
   const loc = useLoc();
@@ -50,9 +63,14 @@ export function Events() {
                           <span className="font-semibold text-maroon">{t("events.dress")}:</span> {loc(e.dressHint)}
                         </p>
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <button className="btn-ghost btn-sm" onClick={() => addToCalendar([e], `${e.id}.ics`)}>
-                            <CalendarIcon size={15} /> {t("events.calendar")}
-                          </button>
+                          <a
+                            className="btn-ghost btn-sm"
+                            href={googleCalUrl(e, loc(e.name), `${loc(e.description)}\nDress: ${loc(e.dressHint)}`)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <CalendarIcon size={15} /> Add to Calendar
+                          </a>
                           <a className="btn-ghost btn-sm" href={e.mapUrl} target="_blank" rel="noopener noreferrer">
                             <MapIcon size={15} /> {t("events.maps")}
                           </a>
@@ -67,7 +85,7 @@ export function Events() {
         </ol>
         <div className="mt-6 text-center">
           <button className="btn-primary" onClick={() => addToCalendar(weddingConfig.events, "karthik-anjali-wedding.ics")}>
-            <CalendarIcon size={18} /> {t("events.calendar")} (all events)
+            <CalendarIcon size={18} /> Download all events (.ics)
           </button>
         </div>
       </div>

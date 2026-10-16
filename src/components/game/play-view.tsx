@@ -8,37 +8,36 @@ import { Section, SectionHeader, Skeleton } from "@/components/ui/primitives";
 import { TugOfWar } from "./scoreboard";
 import { TeamBadge } from "./team-emblem";
 import { TeamPicker } from "./team-picker";
-import { Quiz } from "./quiz";
-import { Challenges } from "./challenges";
-import { Predictions } from "./predictions";
-import { MatchFamily } from "./match-family";
-import { Celebration, Gifts, Leaderboard } from "./gifts-leaderboard";
+import { Leaderboard, Celebration } from "./gifts-leaderboard";
+import { CatchGame } from "./catch-game";
+import { MemoryMatch } from "./memory-match";
+import { WordPuzzle } from "./word-puzzle";
 import { useGame } from "./use-game";
 
-type Mode = "quiz" | "challenges" | "predictions" | "match" | "gifts" | "leaderboard";
+type Mode = "catch" | "memory" | "words" | "leaderboard";
 
 export function PlayView() {
   const t = useT();
   const hydrated = useDevice((s) => s.hydrated);
   const teamChanges = useDevice((s) => s.teamChanges);
-  const { team, me, myPoints, guests, guestId, ended, winner } = useGame();
+  const { team, me, myPoints, guests, guestId, ended, winner, award } = useGame();
   const totals = useTeamTotals().data;
-  const [mode, setMode] = useState<Mode>("quiz");
+  const [mode, setMode] = useState<Mode>("catch");
   const [changing, setChanging] = useState(false);
 
+  const addPoints = (pts: number) => award("bonus", pts);
+
   const modes: Array<{ id: Mode; label: string; emoji: string }> = [
-    { id: "quiz", label: t("play.quiz"), emoji: "💬" },
-    { id: "challenges", label: t("play.challenges"), emoji: "📸" },
-    { id: "predictions", label: t("play.predictions"), emoji: "🔮" },
-    { id: "match", label: t("play.match"), emoji: "🧩" },
-    { id: "gifts", label: t("play.gifts"), emoji: "🎁" },
+    { id: "catch", label: "Catch Treats", emoji: "🍫" },
+    { id: "memory", label: "Memory Match", emoji: "🪔" },
+    { id: "words", label: "Unscramble", emoji: "🔤" },
     { id: "leaderboard", label: t("play.leaderboard"), emoji: "🏆" },
   ];
 
   return (
     <Section className="pt-6">
       <div className="container-narrow">
-        <SectionHeader title={t("play.title")} subtitle="Two families, one friendly rivalry. Every point shows up on the big screen at the venue." />
+        <SectionHeader title={t("play.title")} subtitle="Play games, earn points, and cheer for your team on the big screen!" />
 
         <div className="card mb-6 p-5 pt-8">
           <TugOfWar totals={totals} />
@@ -86,11 +85,9 @@ export function PlayView() {
             </div>
 
             <div role="tabpanel">
-              {mode === "quiz" && <Quiz />}
-              {mode === "challenges" && <Challenges />}
-              {mode === "predictions" && <Predictions />}
-              {mode === "match" && <MatchFamily />}
-              {mode === "gifts" && <Gifts points={myPoints} />}
+              {mode === "catch" && <CatchGame onPoints={addPoints} />}
+              {mode === "memory" && <MemoryMatch onPoints={addPoints} />}
+              {mode === "words" && <WordPuzzle onPoints={addPoints} />}
               {mode === "leaderboard" && (
                 <div className="space-y-4">
                   <Leaderboard guests={guests} myId={guestId} />

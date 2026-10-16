@@ -80,24 +80,40 @@ export function Hero() {
             <path d="M20 518 V174 Q20 22 200 22 Q380 22 380 174 V518" fill="none" stroke="rgb(var(--c-gold) / 0.35)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
           </svg>
           <div className="relative">
-            <Jasmine size={22} className="mx-auto" />
-            <p className="eyebrow mt-4">{phase === "after" ? t("hero.married") : phase === "during" ? t("during.live") : t("intro.invite")}</p>
-            <h1 className="mt-4 font-serif font-semibold leading-[0.95] tracking-tight text-maroon">
+            <motion.div initial={{ scale: 0.7, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.6, delay: 0.3 }}>
+              <Jasmine size={22} className="mx-auto" />
+            </motion.div>
+            <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }} className="eyebrow mt-4">
+              {phase === "after" ? t("hero.married") : phase === "during" ? t("during.live") : t("intro.invite")}
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.7 }}
+              className="mt-4 font-serif font-semibold leading-[0.95] tracking-tight text-maroon"
+            >
               <span className="block text-[3.4rem] sm:text-7xl">{weddingConfig.groom.name}</span>
               <span className="my-1 block font-serif text-3xl font-medium italic text-gold sm:text-4xl">&amp;</span>
               <span className="block text-[3.4rem] sm:text-7xl">{weddingConfig.bride.name}</span>
-            </h1>
-            <p className="mx-auto mt-5 max-w-sm font-serif text-xl italic leading-snug text-ink/75">{loc(weddingConfig.tagline)}</p>
-            <div className="mx-auto mt-7 flex max-w-xs items-center justify-center gap-4 border-y border-gold/40 py-3 font-serif text-maroon">
+            </motion.h1>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75 }} className="mx-auto mt-5 max-w-sm font-serif text-xl italic leading-snug text-ink/75">
+              {loc(weddingConfig.tagline)}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0.8 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ delay: 0.85, duration: 0.5 }}
+              className="mx-auto mt-7 flex max-w-xs items-center justify-center gap-4 border-y border-gold/40 py-3 font-serif text-maroon"
+            >
               <span className="text-sm uppercase tracking-[0.2em]">{formatDate(weddingConfig.muhurtham.start, { weekday: "long" })}</span>
               <span className="text-3xl font-semibold leading-none">{formatDate(weddingConfig.muhurtham.start, { day: "numeric" })}</span>
               <span className="text-sm uppercase tracking-[0.2em]">
                 {formatDate(weddingConfig.muhurtham.start, { month: "short" })} {formatDate(weddingConfig.muhurtham.start, { year: "numeric" })}
               </span>
-            </div>
-            <p className="mt-3 text-sm text-muted">
+            </motion.div>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.95 }} className="mt-3 text-sm text-muted">
               {weddingConfig.venue.name} · {weddingConfig.venue.address.split(",").slice(1, 3).join(",").trim()}
-            </p>
+            </motion.p>
           </div>
         </motion.div>
         {phase !== "after" && (

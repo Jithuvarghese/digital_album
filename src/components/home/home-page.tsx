@@ -4,6 +4,8 @@ import { weddingConfig, type ModuleKey } from "@/config/wedding.config";
 import { useSettings } from "@/data/hooks";
 import { usePhase, useT } from "@/state/ui";
 import { IntroGate } from "@/components/intro/intro-gate";
+import { InvitationCard } from "./invitation-card";
+import { CouplePortrait } from "./couple-portrait";
 import { StoryTimeline } from "@/components/story/story-timeline";
 import { ChatReveal } from "@/components/chat/chat-reveal";
 import { Families } from "@/components/families/families";
@@ -27,6 +29,8 @@ export function HomePage() {
       <IntroGate />
       <Hero />
       <QuickActions />
+      <InvitationCard />
+      <CouplePortrait />
 
       {phase === "before" && (
         <>

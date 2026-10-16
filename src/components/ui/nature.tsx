@@ -61,15 +61,52 @@ function Bird({ flap, color }: { flap: number; color: string }) {
 }
 
 function Butterfly() {
+  /* Left and right wings flap independently around the body centre line */
   return (
-    <svg viewBox="0 0 40 32" width="30" height="24" aria-hidden>
-      <motion.g style={{ originX: "20px", originY: "16px" }} animate={{ scaleX: [1, 0.25, 1] }} transition={{ duration: 0.35, repeat: Infinity, ease: "easeInOut" }}>
-        <path d="M20 16 C10 2 0 6 4 15 C6 20 14 19 20 16Z" fill="rgb(var(--c-accent))" opacity="0.85" />
-        <path d="M20 16 C30 2 40 6 36 15 C34 20 26 19 20 16Z" fill="rgb(var(--c-accent))" opacity="0.85" />
-        <path d="M20 17 C13 22 8 29 13 30 C17 31 19 24 20 17Z" fill="rgb(var(--c-bride))" opacity="0.75" />
-        <path d="M20 17 C27 22 32 29 27 30 C23 31 21 24 20 17Z" fill="rgb(var(--c-bride))" opacity="0.75" />
-      </motion.g>
-      <path d="M20 9 L20 25" stroke="rgb(var(--c-ink))" strokeWidth="1.4" strokeLinecap="round" />
+    <svg viewBox="0 0 60 44" width="44" height="32" aria-hidden>
+      {/* body */}
+      <ellipse cx="30" cy="22" rx="2" ry="9" fill="rgb(var(--c-ink))" opacity="0.7" />
+      {/* antennae */}
+      <line x1="30" y1="13" x2="24" y2="5" stroke="rgb(var(--c-ink))" strokeWidth="1" opacity="0.6" strokeLinecap="round" />
+      <circle cx="24" cy="5" r="1.2" fill="rgb(var(--c-ink))" opacity="0.6" />
+      <line x1="30" y1="13" x2="36" y2="5" stroke="rgb(var(--c-ink))" strokeWidth="1" opacity="0.6" strokeLinecap="round" />
+      <circle cx="36" cy="5" r="1.2" fill="rgb(var(--c-ink))" opacity="0.6" />
+      {/* left upper wing */}
+      <motion.path
+        d="M30 18 C22 8 8 6 6 16 C4 24 16 26 30 22Z"
+        fill="rgb(var(--c-accent))"
+        opacity="0.88"
+        style={{ originX: "30px", originY: "18px" }}
+        animate={{ scaleX: [1, 0.15, 1, 0.15, 1] }}
+        transition={{ duration: 0.55, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* left lower wing */}
+      <motion.path
+        d="M30 22 C22 26 10 32 12 38 C14 42 24 38 30 28Z"
+        fill="rgb(var(--c-bride))"
+        opacity="0.78"
+        style={{ originX: "30px", originY: "22px" }}
+        animate={{ scaleX: [1, 0.15, 1, 0.15, 1] }}
+        transition={{ duration: 0.55, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* right upper wing */}
+      <motion.path
+        d="M30 18 C38 8 52 6 54 16 C56 24 44 26 30 22Z"
+        fill="rgb(var(--c-accent))"
+        opacity="0.88"
+        style={{ originX: "30px", originY: "18px" }}
+        animate={{ scaleX: [1, 0.15, 1, 0.15, 1] }}
+        transition={{ duration: 0.55, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* right lower wing */}
+      <motion.path
+        d="M30 22 C38 26 50 32 48 38 C46 42 36 38 30 28Z"
+        fill="rgb(var(--c-bride))"
+        opacity="0.78"
+        style={{ originX: "30px", originY: "22px" }}
+        animate={{ scaleX: [1, 0.15, 1, 0.15, 1] }}
+        transition={{ duration: 0.55, repeat: Infinity, ease: "easeInOut" }}
+      />
     </svg>
   );
 }
