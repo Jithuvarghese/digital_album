@@ -102,52 +102,6 @@ export function InvitationCard() {
         <ArchPortrait src={groom.photo} name={groom.name} nickname={groom.nickname} label="The Groom" side="right" />
       </div>
 
-      {/* Photo mosaic */}
-      <PhotoMosaic />
     </section>
-  );
-}
-
-const CLIP: Record<string, string> = {
-  oval:     "ellipse(44% 50% at 50% 50%)",
-  circle:   "circle(44% at 50% 50%)",
-  "rect-r": "polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%)",
-  "rect-l": "polygon(0 0, 100% 0, 100% 100%, 22% 100%, 0 78%)",
-};
-
-const MOSAIC = [
-  { src: "/demo/story/umbrella.svg",  shape: "rect-r", alt: "Their story",   w: 80,  h: 100 },
-  { src: "/demo/story/coffee.svg",    shape: "oval",   alt: "Coffee",        w: 70,  h: 90  },
-  { src: "/demo/story/proposal.svg",  shape: "circle", alt: "Proposal",      w: 96,  h: 96  },
-  { src: "/demo/story/calls.svg",     shape: "oval",   alt: "Long distance", w: 70,  h: 90  },
-  { src: "/demo/story/mandapam.svg",  shape: "rect-l", alt: "The wedding",   w: 80,  h: 100 },
-] as const;
-
-function PhotoMosaic() {
-  return (
-    <div className="no-scrollbar mx-auto mt-8 flex max-w-lg items-end justify-center gap-3 overflow-x-auto px-2">
-      {MOSAIC.map((p, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: i * 0.08 }}
-          className="shrink-0"
-          style={{ width: p.w, height: p.h }}
-        >
-          <div
-            className="h-full w-full"
-            style={{
-              clipPath: CLIP[p.shape],
-              background: "linear-gradient(135deg, rgba(var(--c-gold),0.12), rgba(var(--c-maroon),0.06))",
-              boxShadow: "0 4px 16px -4px rgba(73,50,30,0.18)",
-            }}
-          >
-            <img src={p.src} alt={p.alt} className="h-full w-full object-cover" loading="lazy" />
-          </div>
-        </motion.div>
-      ))}
-    </div>
   );
 }
