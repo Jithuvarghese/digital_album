@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
+
+// y is in pixels; x is percent of arena width
 type Item = { id: number; x: number; y: number; emoji: string; speed: number };
+
+const ARENA_H = 380;
+const BASKET_BOTTOM = 52; // px from bottom
+const CATCH_BAND_TOP = ARENA_H - BASKET_BOTTOM - 28;
+const CATCH_BAND_BOT = ARENA_H - BASKET_BOTTOM + 8;
 
 let nextId = 0;
 const ITEMS = ["🍫", "🍫", "🍬", "🍬", "💖", "🧁", "🍫", "💐"];
@@ -40,21 +46,21 @@ export function CatchGame({ onPoints }: { onPoints: (n: number) => void }) {
     lastTsRef.current = ts;
     spawnAccRef.current += dt;
 
-    // Move items down
-    let next = itemsRef.current.map((it) => ({ ...it, y: it.y + it.speed * dt * 100 }));
+    // Move items down — speed is px/s
+    let next = itemsRef.current.map((it) => ({ ...it, y: it.y + it.speed * dt }));
 
     // Catch / miss detection
     let nc = 0, nm = 0;
     next = next.filter((it) => {
-      if (it.y >= 80 && it.y <= 96) {
-        const half = 10;
+      if (it.y >= CATCH_BAND_TOP && it.y <= CATCH_BAND_BOT) {
+        const half = 10; // % of arena width
         if (it.x >= basketRef.current - half && it.x <= basketRef.current + half) {
           nc++;
           return false;
         }
       }
-      if (it.y > 100) {
-        if (it.emoji === "💖") nm++;
+      if (it.y > ARENA_H) {
+        nm++;
         return false;
       }
       return true;
@@ -63,15 +69,15 @@ export function CatchGame({ onPoints }: { onPoints: (n: number) => void }) {
     if (nc > 0) { caughtRef.current += nc; setCaught(caughtRef.current); }
     if (nm > 0) { missedRef.current += nm; setMissed(missedRef.current); }
 
-    // Spawn new item every ~0.85 s
-    if (spawnAccRef.current >= 0.85) {
+    // Spawn new item every ~1.1 s
+    if (spawnAccRef.current >= 1.1) {
       spawnAccRef.current = 0;
       next.push({
         id: ++nextId,
         x: 8 + Math.random() * 84,
-        y: -6,
+        y: -30,
         emoji: ITEMS[Math.floor(Math.random() * ITEMS.length)],
-        speed: 16 + Math.random() * 16,
+        speed: 90 + Math.random() * 70, // px/s — visible, catchable
       });
     }
 
@@ -174,33 +180,27 @@ export function CatchGame({ onPoints }: { onPoints: (n: number) => void }) {
         <div
           ref={arenaRef}
           className="relative w-full max-w-sm touch-none select-none overflow-hidden rounded-3xl bg-gradient-to-b from-amber-50 to-rose-50 ring-1 ring-gold/30"
-          style={{ height: 320 }}
+          style={{ height: ARENA_H }}
           onPointerMove={(e) => moveBasket(e.clientX)}
           onTouchMove={(e) => { e.preventDefault(); moveBasket(e.touches[0].clientX); }}
           onPointerDown={(e) => moveBasket(e.clientX)}
           onTouchStart={(e) => moveBasket(e.touches[0].clientX)}
         >
-          {/* Falling items */}
-          <AnimatePresence>
-            {items.map((it) => (
-              <motion.div
-                key={it.id}
-                className="pointer-events-none absolute text-2xl leading-none"
-                style={{ left: `${it.x}%`, top: `${it.y}%`, transform: "translate(-50%,-50%)" }}
-                initial={{ opacity: 0, scale: 0.4 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.4 }}
-                transition={{ duration: 0.15 }}
-              >
-                {it.emoji}
-              </motion.div>
-            ))}
-          </AnimatePresence>
+          {/* Falling items — no AnimatePresence, plain divs for perf */}
+          {items.map((it) => (
+            <div
+              key={it.id}
+              className="pointer-events-none absolute text-2xl leading-none"
+              style={{ left: `${it.x}%`, top: it.y, transform: "translate(-50%,-50%)" }}
+            >
+              {it.emoji}
+            </div>
+          ))}
 
           {/* Basket */}
           <div
             className="pointer-events-none absolute"
-            style={{ bottom: 12, left: `${basketPct}%`, transform: "translateX(-50%)" }}
+            style={{ bottom: BASKET_BOTTOM - 36, left: `${basketPct}%`, transform: "translateX(-50%)" }}
           >
             <span className="text-4xl leading-none">🧺</span>
           </div>
