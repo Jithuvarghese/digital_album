@@ -10,8 +10,8 @@ export function Families() {
   const loc = useLoc();
 
   const sides = [
-    { key: "bride" as const, label: "Bride's Family", person: weddingConfig.bride },
-    { key: "groom" as const, label: "Groom's Family", person: weddingConfig.groom },
+    { key: "bride" as const, label: "Bride's Family", person: weddingConfig.bride, groupPhoto: (weddingConfig.families as { brideGroupPhoto?: string }).brideGroupPhoto },
+    { key: "groom" as const, label: "Groom's Family", person: weddingConfig.groom, groupPhoto: (weddingConfig.families as { groomGroupPhoto?: string }).groomGroupPhoto },
   ];
 
   return (
@@ -20,7 +20,7 @@ export function Families() {
         <SectionHeader title={t("families.title")} subtitle="Two families coming together as one." />
 
         <div className="grid gap-10 md:grid-cols-2">
-          {sides.map(({ key, label, person }, si) => {
+          {sides.map(({ key, label, person, groupPhoto }, si) => {
             const members = weddingConfig.families[key];
             /* Show only nuclear family: first 4 members (parents + siblings) */
             const nuclear = members.slice(0, 4);
@@ -33,23 +33,20 @@ export function Families() {
                 transition={{ duration: 0.6, delay: si * 0.1 }}
                 className="card p-6"
               >
-                {/* Group photo placeholder / couple portrait */}
-                <div className="mb-5 flex items-center gap-4 border-b border-gold/30 pb-5">
-                  <div className="relative h-20 w-16 shrink-0">
+                {/* Family group photo */}
+                {groupPhoto && (
+                  <div className="mb-5 overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(193,158,96,0.25)" }}>
                     <img
-                      src={person.photo}
-                      alt={person.name}
-                      width={64}
-                      height={80}
+                      src={groupPhoto}
+                      alt={label}
                       loading="lazy"
-                      className="h-full w-full rounded-xl object-cover ring-2 ring-gold/40"
+                      className="h-48 w-full object-cover sm:h-56"
                     />
                   </div>
-                  <div>
-                    <p className="eyebrow">{label}</p>
-                    <p className="font-serif text-2xl text-maroon">{person.name}</p>
-                    <p className="mt-1 text-sm text-ink/75">{loc(person.bio)}</p>
-                  </div>
+                )}
+                <div className="mb-5 border-b border-gold/30 pb-5">
+                  <p className="eyebrow">{label}</p>
+                  <p className="font-serif text-2xl text-maroon">{person.name}&apos;s family</p>
                 </div>
 
                 {/* Nuclear family members */}

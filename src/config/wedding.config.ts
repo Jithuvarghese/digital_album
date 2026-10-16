@@ -121,7 +121,7 @@ export const weddingConfig = {
       ml: "കാണുന്ന ഓരോ അമ്പലവും വരച്ചുവയ്ക്കുന്ന കൊച്ചിക്കാരി ആർക്കിടെക്റ്റ്.",
       ta: "பார்க்கும் ஒவ்வொரு கோயிலையும் வரைந்து வைக்கும் கொச்சி கட்டடக் கலைஞர்.",
     },
-    photo: "/demo/couple/anjali.svg",
+    photo: "/demo/Serene Jasmine-Adorned Saree Portrait.png",
   } as Person,
   groom: {
     name: "Karthik",
@@ -131,7 +131,7 @@ export const weddingConfig = {
       ml: "കോയമ്പത്തൂരിൽ നിന്നുള്ള സോഫ്റ്റ്‌വെയർ എഞ്ചിനീയർ, ഫിൽറ്റർ കോഫി പ്രേമി.",
       ta: "கோயம்புத்தூர் மென்பொருள் பொறியாளர், ஃபில்டர் காபி ரசிகர்.",
     },
-    photo: "/demo/couple/karthik.svg",
+    photo: "/demo/Warm Portrait in Traditional Attire.png",
   } as Person,
 
   // Wedding day details
@@ -213,6 +213,8 @@ export const weddingConfig = {
   ] as WeddingEvent[],
 
   families: {
+    brideGroupPhoto: "/demo/Kerala Heritage Family Portrait.png",
+    groomGroupPhoto: "/demo/Warm South Indian Family Portrait.png",
     bride: [
       { name: "Ramesh Kumar", relation: "Bride's father", note: "Retired port engineer. Will tell you the history of every ship in Kochi harbour." },
       { name: "Lekha Ramesh", relation: "Bride's mother", note: "Music teacher. The reason there will be a veena recital at the reception." },
@@ -242,7 +244,7 @@ export const weddingConfig = {
         ml: "ബെംഗളൂരുവിലെ ഒരു ചെറിയ പുസ്തകക്കടയിൽ ഒരു മഴക്കാല സന്ധ്യ. ഒരു കുട, രണ്ടു അപരിചിതർ.",
         ta: "பெங்களூரு புத்தகக் கடையில் ஒரு மழைக்கால மாலை. ஒரு குடை, இரு அந்நியர்கள்.",
       },
-      photo: "/demo/story/umbrella.svg",
+      photo: "/demo/Rainy Stroll by the Bookshop.png",
     },
     {
       date: "December 2019",
@@ -252,7 +254,7 @@ export const weddingConfig = {
         ml: "ആദ്യത്തെ തർക്കം, മല്ലേശ്വരത്തെ കോഫി യാത്രയിൽ. ആരും ജയിച്ചില്ല.",
         ta: "முதல் வாக்குவாதம், மல்லேஸ்வரம் காபி பயணத்தில். யாரும் வெல்லவில்லை.",
       },
-      photo: "/demo/story/coffee.svg",
+      photo: "/demo/Golden Cafe Sketching Moment.png",
     },
     {
       date: "April 2021",
@@ -262,7 +264,7 @@ export const weddingConfig = {
         ml: "അഞ്ജലി കൊച്ചിയിലേക്ക്, കാർത്തിക് ബെംഗളൂരുവിൽ. എല്ലാ രാത്രിയും പത്തുമണിക്ക് ഒരു 'അഞ്ചു മിനിറ്റ്' കോൾ.",
         ta: "அஞ்சலி கொச்சிக்கு, கார்த்திக் பெங்களூருவில். ஒவ்வொரு இரவும் 10 மணிக்கு 'ஐந்து நிமிட' அழைப்பு.",
       },
-      photo: "/demo/story/calls.svg",
+      photo: "/demo/Cozy Midnight Video Call.png",
     },
     {
       date: "January 2026",
@@ -272,7 +274,7 @@ export const weddingConfig = {
         ml: "ചീനവലകൾക്കരികിലെ അസ്തമയം, തിരികെ നൽകിയ കുടയ്ക്കുള്ളിൽ ഒരു മോതിരം, ഒരു വലിയ 'അതെ'.",
         ta: "சீன மீன்பிடி வலைகள் அருகே சூரிய அஸ்தமனம், குடைக்குள் மறைந்த மோதிரம், ஒரு உரத்த 'ஆம்'.",
       },
-      photo: "/demo/story/proposal.svg",
+      photo: "/demo/Golden-Hour Seaside Proposal.png",
     },
     {
       date: "November 2026",
@@ -282,7 +284,7 @@ export const weddingConfig = {
         ml: "കേരള സദ്യയും കൊങ്ങു ആതിഥ്യവും. കൊച്ചിയിൽ നിങ്ങളെ കാത്തിരിക്കുന്നു.",
         ta: "கேரள சத்யாவும் கொங்கு விருந்தோம்பலும். கொச்சியில் உங்களுக்காக காத்திருக்கிறோம்.",
       },
-      photo: "/demo/story/mandapam.svg",
+      photo: "/demo/Golden South Indian Wedding Moment.png",
     },
   ] as StoryEntry[],
 
@@ -458,7 +460,7 @@ export const weddingConfig = {
    * - file: an mp3 in /public (e.g. "/music/wedding.mp3"), used when youtubeId is empty.
    * With neither set, a soft instrumental melody is generated in the browser.
    */
-  music: { youtubeId: "MWT0Bg1D1P4", start: 0, file: "", volume: 40 },
+  music: { youtubeId: "BddP6PYo2gs", start: 0, file: "", volume: 40 },
 
   theme: "kasavu" as ThemeName,
   themes: {
