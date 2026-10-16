@@ -8,6 +8,7 @@ import { useSettings } from "@/data/hooks";
 import { formatDate } from "@/lib/text";
 import { usePhase, useLoc, useT } from "@/state/ui";
 import type { StringKey } from "@/lib/i18n";
+import { Jasmine } from "@/components/ui/ornaments";
 import { BlessIcon, CalendarIcon, CameraIcon, CapsuleIcon, FilmIcon, MapIcon, TrophyIcon, TvIcon, HeartIcon } from "@/components/ui/icons";
 
 export function useNow(intervalMs = 1000) {
@@ -59,25 +60,46 @@ export function Hero() {
   const phase = usePhase();
   const t = useT();
   return (
-    <section className="relative overflow-hidden pb-10 pt-6 sm:pt-12">
-      <div aria-hidden className="motif pointer-events-none absolute inset-0" />
+    <section className="relative overflow-hidden pb-10 pt-8 sm:pt-14">
       <div className="container-narrow relative flex flex-col items-center text-center">
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="flex w-full items-end justify-center gap-4 pt-10">
-          <div>
-            <p className="eyebrow">{phase === "after" ? t("hero.married") : phase === "during" ? t("during.live") : t("intro.invite")}</p>
-            <h1 className="mt-3 font-serif text-[3.2rem] leading-[1.02] text-maroon sm:text-7xl">
-              {weddingConfig.groom.name}
-              <span className="mx-3 inline-block font-serif text-4xl italic text-gold sm:text-5xl">&amp;</span>
-              {weddingConfig.bride.name}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="relative w-full max-w-xl px-6 pb-10 pt-16 sm:px-12 sm:pt-20"
+        >
+          {/* Temple-arch frame */}
+          <svg aria-hidden viewBox="0 0 400 520" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full">
+            <defs>
+              <linearGradient id="arch-fill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="rgb(var(--c-paper))" stopOpacity="0.95" />
+                <stop offset="1" stopColor="rgb(var(--c-paper))" stopOpacity="0.55" />
+              </linearGradient>
+            </defs>
+            <path d="M8 518 V170 Q8 8 200 8 Q392 8 392 170 V518" fill="url(#arch-fill)" stroke="rgb(var(--c-gold) / 0.7)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+            <path d="M20 518 V174 Q20 22 200 22 Q380 22 380 174 V518" fill="none" stroke="rgb(var(--c-gold) / 0.35)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+          </svg>
+          <div className="relative">
+            <Jasmine size={22} className="mx-auto" />
+            <p className="eyebrow mt-4">{phase === "after" ? t("hero.married") : phase === "during" ? t("during.live") : t("intro.invite")}</p>
+            <h1 className="mt-4 font-serif font-semibold leading-[0.95] tracking-tight text-maroon">
+              <span className="block text-[3.4rem] sm:text-7xl">{weddingConfig.groom.name}</span>
+              <span className="my-1 block font-serif text-3xl font-medium italic text-gold sm:text-4xl">&amp;</span>
+              <span className="block text-[3.4rem] sm:text-7xl">{weddingConfig.bride.name}</span>
             </h1>
+            <p className="mx-auto mt-5 max-w-sm font-serif text-xl italic leading-snug text-ink/75">{loc(weddingConfig.tagline)}</p>
+            <div className="mx-auto mt-7 flex max-w-xs items-center justify-center gap-4 border-y border-gold/40 py-3 font-serif text-maroon">
+              <span className="text-sm uppercase tracking-[0.2em]">{formatDate(weddingConfig.muhurtham.start, { weekday: "long" })}</span>
+              <span className="text-3xl font-semibold leading-none">{formatDate(weddingConfig.muhurtham.start, { day: "numeric" })}</span>
+              <span className="text-sm uppercase tracking-[0.2em]">
+                {formatDate(weddingConfig.muhurtham.start, { month: "short" })} {formatDate(weddingConfig.muhurtham.start, { year: "numeric" })}
+              </span>
+            </div>
+            <p className="mt-3 text-sm text-muted">
+              {weddingConfig.venue.name} · {weddingConfig.venue.address.split(",").slice(1, 3).join(",").trim()}
+            </p>
           </div>
         </motion.div>
-        <p className="mt-4 max-w-md font-serif text-xl italic text-ink/80">{loc(weddingConfig.tagline)}</p>
-        <div className="kasavu-line my-6 w-32" />
-        <p className="font-medium text-ink">{formatDate(weddingConfig.muhurtham.start, { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
-        <p className="text-sm text-muted">
-          {weddingConfig.venue.name} · {weddingConfig.venue.address.split(",").slice(1, 3).join(",").trim()}
-        </p>
         {phase !== "after" && (
           <div className="mt-8 w-full">
             <Countdown />
