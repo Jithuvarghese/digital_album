@@ -45,18 +45,17 @@ export function Events() {
                   <article className={`card relative overflow-hidden p-5 ${past ? "opacity-70" : ""}`}>
                     {live && <span className="absolute right-4 top-4 rounded-full bg-maroon px-3 py-1 text-xs font-semibold text-jasmine">{t("during.live")}</span>}
                     <div className="flex gap-4">
-                      <div className="flex w-16 shrink-0 flex-col items-center rounded-xl bg-maroon/5 py-2 text-maroon ring-1 ring-gold/30">
-                        <span className="text-xs uppercase tracking-wide">{formatDate(e.start, { month: "short" })}</span>
-                        <span className="font-serif text-3xl leading-none">{formatDate(e.start, { day: "numeric" })}</span>
-                        <span className="text-[10px] text-muted">{formatDate(e.start, { weekday: "short" })}</span>
+                      {/* Date badge */}
+                      <div className="flex w-14 shrink-0 flex-col items-center rounded-xl py-2 text-maroon" style={{ background: "rgba(193,158,96,0.1)", border: "1px solid rgba(193,158,96,0.25)" }}>
+                        <span className="text-[10px] uppercase tracking-[0.15em]">{formatDate(e.start, { month: "short" })}</span>
+                        <span className="font-serif leading-none" style={{ fontSize: "clamp(1.6rem,5vw,2rem)" }}>{formatDate(e.start, { day: "numeric" })}</span>
+                        <span className="text-[9px] text-muted">{formatDate(e.start, { weekday: "short" })}</span>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-2xl text-maroon">{loc(e.name)}</h3>
-                        <p className="mt-1 flex items-center gap-1.5 text-sm text-ink/80">
-                          <ClockIcon size={15} /> {formatTime(e.start)} – {formatTime(e.end)}
-                        </p>
-                        <p className="mt-0.5 flex items-start gap-1.5 text-sm text-ink/80">
-                          <MapIcon size={15} className="mt-0.5 shrink-0" /> {e.venue}
+                        <h3 className="font-serif text-maroon" style={{ fontSize: "clamp(1.2rem,4vw,1.5rem)", lineHeight: 1.1 }}>{loc(e.name)}</h3>
+                        <p className="mt-2 flex flex-wrap items-center gap-2">
+                          <span className="pill"><ClockIcon size={12} />{formatTime(e.start)} – {formatTime(e.end)}</span>
+                          <span className="pill"><MapIcon size={12} />{e.venue.split("–")[0].trim()}</span>
                         </p>
                         <p className="mt-3 text-sm leading-relaxed">{loc(e.description)}</p>
                         <p className="mt-2 rounded-lg bg-turmeric/10 px-3 py-2 text-sm">

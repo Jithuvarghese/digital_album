@@ -42,11 +42,20 @@ export function Countdown({ large = false }: { large?: boolean }) {
   ];
   return (
     <div role="timer" aria-label={t("hero.countdown")}>
-      <div className={`flex justify-center ${large ? "gap-10" : "gap-1.5 sm:gap-4"}`}>
+      <div className={`flex justify-center ${large ? "gap-10" : "gap-2 sm:gap-4"}`}>
         {parts.map(([n, key]) => (
-          <div key={key} className={`flex flex-col items-center rounded-2xl bg-paper/80 ring-1 ring-gold/30 ${large ? "min-w-[180px] px-6 py-6" : "w-[62px] px-1.5 py-3 sm:w-[76px]"}`}>
-            <span className={`font-serif tabular-nums text-maroon ${large ? "text-8xl" : "text-3xl sm:text-4xl"}`}>{String(n).padStart(2, "0")}</span>
-            <span className={`uppercase tracking-widest text-muted ${large ? "text-xl" : "text-[9px] sm:text-[10px]"}`}>{t(key)}</span>
+          <div
+            key={key}
+            className={`flex flex-col items-center ${large ? "min-w-[180px] rounded-2xl bg-paper/80 px-6 py-6 ring-1 ring-gold/30" : "min-w-[60px] rounded-xl px-2 py-3 sm:min-w-[72px]"}`}
+            style={large ? {} : { background: "rgba(255,253,249,0.78)", border: "1px solid rgba(193,158,96,0.22)" }}
+          >
+            <span
+              className={`font-serif tabular-nums text-maroon ${large ? "text-8xl" : ""}`}
+              style={large ? {} : { fontSize: "clamp(1.8rem, 6vw, 2.8rem)", lineHeight: 0.9, fontVariantNumeric: "tabular-nums" }}
+            >
+              {String(n).padStart(2, "0")}
+            </span>
+            <span className={`mt-1 uppercase tracking-[0.18em] text-muted ${large ? "text-xl" : "text-[9px]"}`}>{t(key)}</span>
           </div>
         ))}
       </div>
@@ -90,11 +99,12 @@ export function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.7 }}
-              className="mt-4 font-serif font-semibold leading-[0.95] tracking-tight text-maroon"
+              className="mt-4 font-serif font-semibold tracking-tight text-maroon"
+              style={{ lineHeight: 0.88 }}
             >
-              <span className="block text-[3.4rem] sm:text-7xl">{weddingConfig.groom.name}</span>
-              <span className="my-1 block font-serif text-3xl font-medium italic text-gold sm:text-4xl">&amp;</span>
-              <span className="block text-[3.4rem] sm:text-7xl">{weddingConfig.bride.name}</span>
+              <span className="block" style={{ fontSize: "clamp(2.8rem, 10vw, 5rem)" }}>{weddingConfig.groom.name}</span>
+              <span className="my-2 block font-serif font-medium italic text-gold" style={{ fontSize: "clamp(1.4rem, 4vw, 2rem)" }}>&amp;</span>
+              <span className="block" style={{ fontSize: "clamp(2.8rem, 10vw, 5rem)" }}>{weddingConfig.bride.name}</span>
             </motion.h1>
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75 }} className="mx-auto mt-5 max-w-sm font-serif text-xl italic leading-snug text-ink/75">
               {loc(weddingConfig.tagline)}

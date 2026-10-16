@@ -25,12 +25,12 @@ export function SectionHeader({ eyebrow, title, subtitle, center = true }: { eye
     <Reveal className={`mb-8 ${center ? "text-center" : ""}`}>
       {eyebrow && <p className="eyebrow mb-2">{eyebrow}</p>}
       <h2 className="section-title">{title}</h2>
-      <div className={`mt-3 flex items-center gap-2 ${center ? "justify-center" : ""}`} aria-hidden>
-        <span className="h-px w-10 bg-gold/60" />
-        <Jasmine size={14} />
-        <span className="h-px w-10 bg-gold/60" />
+      <div className={`mt-4 flex items-center gap-3 ${center ? "justify-center" : ""}`} aria-hidden>
+        <span className="h-px flex-1 max-w-[48px]" style={{ background: "rgba(193,158,96,0.5)" }} />
+        <Jasmine size={13} />
+        <span className="h-px flex-1 max-w-[48px]" style={{ background: "rgba(193,158,96,0.5)" }} />
       </div>
-      {subtitle && <p className={`mt-3 text-muted ${center ? "mx-auto max-w-xl" : ""}`}>{subtitle}</p>}
+      {subtitle && <p className={`mt-3 text-sm text-muted ${center ? "mx-auto max-w-xl" : ""}`}>{subtitle}</p>}
     </Reveal>
   );
 }

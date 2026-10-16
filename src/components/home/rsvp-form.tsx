@@ -50,7 +50,7 @@ export function RsvpForm() {
     <Section id="rsvp">
       <div className="container-narrow">
         <SectionHeader title={t("rsvp.title")} subtitle={t("rsvp.subtitle")} />
-        <div className="card kasavu-frame mx-auto max-w-lg p-6 sm:p-8">
+        <div className="kasavu-frame mx-auto max-w-lg rounded-[24px] bg-paper/90 p-6 shadow-card sm:p-8" style={{ border: "1px solid rgba(193,158,96,0.3)" }}>
           <AnimatePresence mode="wait">
             {status === "done" ? (
               <motion.div key="done" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="py-6 text-center" role="status">

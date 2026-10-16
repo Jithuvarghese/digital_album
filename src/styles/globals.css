@@ -18,7 +18,7 @@
       radial-gradient(ellipse at 50% 100%, rgb(var(--c-gold) / 0.08), transparent 55%);
     background-attachment: fixed;
   }
-  /* The four-petal motif, faintly tiled behind every page */
+  /* Four-petal motif tiled behind every page */
   body::before {
     content: "";
     position: fixed;
@@ -47,40 +47,103 @@
   .container-narrow { @apply mx-auto w-full max-w-3xl px-4; }
   .container-wide { @apply mx-auto w-full max-w-6xl px-4; }
 
+  /* Card — warm semi-transparent glaze over the patterned background */
   .card {
-    @apply rounded-2xl bg-paper shadow-card ring-1 ring-ink/[0.06];
+    background: rgba(255, 253, 249, 0.82);
+    @apply rounded-2xl shadow-card;
+    border: 1px solid rgba(var(--c-gold-raw, 193 158 96) / 0.22);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
+  /* Buttons */
   .btn {
-    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide transition duration-200
-           disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.98];
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-semibold tracking-[0.13em] uppercase transition duration-200
+           disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.97];
   }
-  .btn-primary { @apply btn bg-maroon text-jasmine shadow-[0_6px_16px_-8px_rgb(var(--c-maroon)/0.7)] hover:bg-maroon/90 hover:shadow-[0_10px_22px_-10px_rgb(var(--c-maroon)/0.8)]; }
+  .btn-primary {
+    @apply btn text-jasmine;
+    background: rgb(var(--c-maroon));
+    box-shadow: 0 6px 20px -8px rgb(var(--c-maroon) / 0.55);
+  }
+  .btn-primary:hover {
+    background: rgb(var(--c-maroon) / 0.9);
+    box-shadow: 0 10px 26px -10px rgb(var(--c-maroon) / 0.7);
+  }
   .btn-gold { @apply btn bg-gold text-ink hover:bg-gold/90; }
-  .btn-ghost { @apply btn bg-paper/60 text-maroon ring-1 ring-maroon/20 hover:bg-maroon/5 hover:ring-maroon/40; }
-  .btn-sm { @apply min-h-[36px] px-3 py-1.5 text-xs; }
-
-  .input {
-    @apply min-h-[46px] w-full rounded-xl border border-ink/10 bg-jasmine px-3.5 py-2 text-ink shadow-[inset_0_1px_2px_rgb(var(--c-ink)/0.04)] transition placeholder:text-muted/60
-           focus:border-maroon focus:outline-none focus:ring-2 focus:ring-maroon/20;
+  .btn-ghost {
+    @apply btn text-maroon;
+    background: transparent;
+    border: 1px solid rgba(var(--c-gold-raw, 193 158 96) / 0.55);
   }
-  .label { @apply mb-1 block text-sm font-medium text-ink; }
+  .btn-ghost:hover {
+    background: rgb(var(--c-gold) / 0.08);
+    border-color: rgba(var(--c-gold-raw, 193 158 96) / 0.75);
+  }
+  .btn-sm { @apply min-h-[36px] px-3 py-1.5; font-size: 10px; }
 
-  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.28em] text-gold; }
-  .section-title { @apply font-serif text-[2.1rem] font-semibold leading-tight tracking-tight text-maroon sm:text-5xl; }
+  /* Inputs — editorial underline style */
+  .input {
+    @apply min-h-[46px] w-full bg-transparent px-0 py-3 text-ink transition placeholder:text-muted/50;
+    border: none;
+    border-bottom: 1px solid rgba(118, 105, 93, 0.35);
+    border-radius: 0;
+    outline: none;
+    font-size: 15px;
+  }
+  .input:focus {
+    border-bottom-color: rgb(var(--c-maroon));
+    box-shadow: 0 1px 0 0 rgb(var(--c-maroon));
+  }
+  /* Restore bordered style for selects and textareas where underline looks odd */
+  select.input, textarea.input {
+    @apply rounded-xl px-3.5;
+    border: 1px solid rgba(var(--c-gold-raw, 193 158 96) / 0.28);
+    background: rgba(255, 253, 249, 0.7);
+  }
+  select.input:focus, textarea.input:focus {
+    border-color: rgb(var(--c-maroon));
+    box-shadow: 0 0 0 2px rgb(var(--c-maroon) / 0.12);
+  }
 
-  /* Kasavu double border, used as a subtle accent line */
+  .label {
+    @apply mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.18em] text-muted;
+  }
+
+  /* Section eyebrow label */
+  .eyebrow {
+    @apply text-[10px] font-semibold uppercase tracking-[0.28em] text-gold;
+    letter-spacing: 0.28em;
+  }
+
+  /* Section heading — fluid size */
+  .section-title {
+    @apply font-serif font-semibold tracking-tight text-maroon;
+    font-size: clamp(1.75rem, 5vw, 2.6rem);
+    line-height: 1.05;
+  }
+
+  /* Hairline gold pill — for location tags, chips */
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-medium;
+    background: rgba(var(--c-gold-raw, 193 158 96) / 0.08);
+    border: 1px solid rgba(var(--c-gold-raw, 193 158 96) / 0.28);
+    color: rgb(var(--c-maroon));
+  }
+
+  /* Kasavu double border accent line */
   .kasavu-line {
     height: 6px;
     background:
       linear-gradient(rgb(var(--c-gold)), rgb(var(--c-gold))) top / 100% 3px no-repeat,
       linear-gradient(rgb(var(--c-gold) / 0.5), rgb(var(--c-gold) / 0.5)) bottom / 100% 1px no-repeat;
   }
+  /* Inset double-ring frame */
   .kasavu-frame {
-    box-shadow: inset 0 0 0 1px rgb(var(--c-gold) / 0.55), inset 0 0 0 5px rgb(var(--c-paper)), inset 0 0 0 6px rgb(var(--c-gold) / 0.35);
+    box-shadow: inset 0 0 0 1px rgb(var(--c-gold) / 0.50), inset 0 0 0 5px rgb(var(--c-paper)), inset 0 0 0 6px rgb(var(--c-gold) / 0.28);
   }
 
-  /* Same motif, slightly stronger, for framed areas */
+  /* Subtle motif background */
   .motif {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23C19E60' stroke-width='0.8' opacity='0.35'%3E%3Cpath d='M28 22c2-4 6-4 6 0s-4 6-6 6c-2 0-6-2-6-6s4-4 6 0z'/%3E%3Cpath d='M28 34c2 4 6 4 6 0s-4-6-6-6c-2 0-6 2-6 6s4 4 6 0z'/%3E%3C/g%3E%3C/svg%3E");
     -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 20%, transparent 75%);
@@ -94,6 +157,13 @@
   @media (min-width: 768px) { .masonry { columns: 3; } }
   @media (min-width: 1200px) { .masonry { columns: 4; } }
   .masonry > * { break-inside: avoid; margin-bottom: 0.75rem; }
+
+  /* Top-accent stat card (admin) */
+  .stat-card {
+    @apply card p-5;
+    border-top: 3px solid rgb(var(--c-gold));
+    border-radius: 12px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -113,6 +183,14 @@
 
 @keyframes marquee-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 .animate-marquee-up { animation: marquee-up 60s linear infinite; }
+
+/* Skeleton shimmer */
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+.skeleton {
+  background: linear-gradient(90deg, rgb(var(--c-gold)/0.06) 25%, rgb(var(--c-gold)/0.13) 50%, rgb(var(--c-gold)/0.06) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
 
 @media print {
   .no-print { display: none !important; }

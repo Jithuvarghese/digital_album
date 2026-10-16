@@ -55,6 +55,7 @@ export function IntroGate() {
         <motion.div
           key="intro"
           className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-ivory"
+          style={{ height: "100dvh" }}
           exit={{ opacity: 0, scale: 1.04, filter: "blur(4px)" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
