@@ -458,7 +458,7 @@ export const weddingConfig = {
    * - file: an mp3 in /public (e.g. "/music/wedding.mp3"), used when youtubeId is empty.
    * With neither set, a soft instrumental melody is generated in the browser.
    */
-  music: { youtubeId: "zCmk62ABI0I", start: 0, file: "", volume: 40 },
+  music: { youtubeId: "MWT0Bg1D1P4", start: 0, file: "", volume: 40 },
 
   theme: "kasavu" as ThemeName,
   themes: {
