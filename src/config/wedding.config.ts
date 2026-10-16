@@ -446,13 +446,13 @@ export const weddingConfig = {
   } as Localized,
 
   films: [
-    { id: "save-the-date", title: "Save the date", poster: "/demo/films/save-the-date.svg", src: "", status: "available" as const, note: "Released October 2026" },
+    { id: "save-the-date", title: "Love Story", poster: "/demo/films/save-the-date.svg", src: "/demo/Love story.mp4", status: "available" as const, note: "Released October 2026" },
     { id: "highlights", title: "Wedding highlights", poster: "/demo/films/highlights.svg", src: "", status: "after" as const, note: "Coming soon after the wedding" },
     { id: "reception", title: "Reception reel", poster: "/demo/films/reception.svg", src: "", status: "after" as const, note: "Coming soon after the wedding" },
   ],
 
   /** Background music for the story preview. Leave empty for a gentle generated tanpura-style drone. */
-  storyMusic: "",
+  storyMusic: "/demo/Love story.mp4",
 
   /**
    * Background music, started when a guest taps "open" on the invitation.
