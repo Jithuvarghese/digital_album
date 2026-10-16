@@ -17,9 +17,9 @@ function ArchPortrait({
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className="flex shrink-0 flex-col items-center gap-2"
     >
-      {/* Arch portrait — 140×190 on phones, 180×240 on sm+ */}
-      <div className="relative h-[190px] w-[140px] sm:h-[240px] sm:w-[180px]">
-        <svg viewBox="0 0 180 240" className="pointer-events-none absolute inset-0 z-10 h-full w-full">
+      {/* Arch portrait — 180×260 on phones, 220×320 on sm+ */}
+      <div className="relative h-[260px] w-[180px] sm:h-[320px] sm:w-[220px]">
+        <svg viewBox="0 0 220 320" className="pointer-events-none absolute inset-0 z-10 h-full w-full">
           <defs>
             <linearGradient id={`ag-${side}`} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="rgb(var(--c-gold))" stopOpacity="0.75" />
@@ -27,14 +27,14 @@ function ArchPortrait({
             </linearGradient>
           </defs>
           {/* Outer arch stroke */}
-          <path d="M6 238 V96 Q6 6 90 6 Q174 6 174 96 V238" fill="none" stroke={`url(#ag-${side})`} strokeWidth="2.5" />
+          <path d="M6 318 V118 Q6 6 110 6 Q214 6 214 118 V318" fill="none" stroke={`url(#ag-${side})`} strokeWidth="2.5" />
           {/* Inner arch stroke */}
-          <path d="M14 238 V99 Q14 16 90 16 Q166 16 166 99 V238" fill="none" stroke={`url(#ag-${side})`} strokeWidth="1" strokeOpacity="0.4" />
+          <path d="M16 318 V122 Q16 18 110 18 Q204 18 204 122 V318" fill="none" stroke={`url(#ag-${side})`} strokeWidth="1" strokeOpacity="0.4" />
         </svg>
         <div
           className="h-full w-full overflow-hidden"
           style={{
-            clipPath: "path('M6 240 V96 Q6 6 90 6 Q174 6 174 96 V240 Z')",
+            clipPath: "path('M6 320 V118 Q6 6 110 6 Q214 6 214 118 V320 Z')",
             background: "linear-gradient(135deg, rgba(var(--c-gold),0.12), rgba(var(--c-maroon),0.06))",
           }}
         >
@@ -61,7 +61,7 @@ export function InvitationCard() {
     <section className="w-full px-3 py-8 sm:px-4">
       {/* Three-column: portrait | invitation | portrait */}
       {/* On screens < 400px this stacks; on normal phones (≥ 400px) it stays side by side */}
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-center min-[420px]:gap-4 sm:gap-8">
+      <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 min-[500px]:flex-row min-[500px]:items-end min-[500px]:justify-center min-[500px]:gap-3 sm:gap-6">
 
         <ArchPortrait src={bride.photo} name={bride.name} nickname={bride.nickname} label="The Bride" side="left" />
 
