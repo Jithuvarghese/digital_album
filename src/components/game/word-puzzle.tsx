@@ -6,12 +6,14 @@ import { motion } from "framer-motion";
 type Puzzle = { word: string; hint: string; emoji: string };
 
 const PUZZLES: Puzzle[] = [
-  { word: "MUHURTHAM", hint: "The auspicious wedding hour", emoji: "⏰" },
-  { word: "SADYA", hint: "Grand feast served on banana leaf", emoji: "🍌" },
-  { word: "THALI", hint: "Sacred necklace tied by the groom", emoji: "💛" },
-  { word: "MANDAPAM", hint: "The decorated wedding stage", emoji: "🌸" },
-  { word: "KASAVU", hint: "Kerala's golden-bordered saree", emoji: "👘" },
-  { word: "KANYADANAM", hint: "The ritual of gifting the bride", emoji: "🙏" },
+  { word: "WEDDING", hint: "The ceremony uniting two people in marriage", emoji: "💍" },
+  { word: "BOUQUET", hint: "Flowers carried by the bride", emoji: "💐" },
+  { word: "VOWS", hint: "Promises made to each other at the altar", emoji: "🤝" },
+  { word: "RECEPTION", hint: "Celebration dinner after the ceremony", emoji: "🥂" },
+  { word: "HONEYMOON", hint: "First holiday as a married couple", emoji: "✈️" },
+  { word: "CEREMONY", hint: "The formal marriage ritual", emoji: "⛪" },
+  { word: "PROPOSAL", hint: "When one person asks the other to marry", emoji: "💍" },
+  { word: "BLESSINGS", hint: "Wishes of happiness from loved ones", emoji: "🙏" },
 ];
 
 function shuffle<T>(a: T[]): T[] {

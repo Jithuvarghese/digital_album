@@ -12,7 +12,10 @@ const CATCH_BAND_TOP = ARENA_H - BASKET_BOTTOM - 28;
 const CATCH_BAND_BOT = ARENA_H - BASKET_BOTTOM + 8;
 
 let nextId = 0;
-const ITEMS = ["🍫", "🍫", "🍬", "🍬", "💖", "🧁", "🍫", "💐"];
+const GOOD = ["🍫", "🍫", "🍬", "🍬", "💖", "🧁", "🍫", "💐"];
+const BAD  = ["💔"];
+// ~20 % chance of a broken heart
+const ITEMS = [...GOOD, ...GOOD, ...BAD, ...BAD];
 
 export function CatchGame({ onPoints }: { onPoints: (n: number) => void }) {
   const [items, setItems] = useState<Item[]>([]);
@@ -49,19 +52,18 @@ export function CatchGame({ onPoints }: { onPoints: (n: number) => void }) {
     // Move items down — speed is px/s
     let next = itemsRef.current.map((it) => ({ ...it, y: it.y + it.speed * dt }));
 
-    // Catch / miss detection
+    // Catch / miss detection — catching 💔 is a penalty
     let nc = 0, nm = 0;
     next = next.filter((it) => {
       if (it.y >= CATCH_BAND_TOP && it.y <= CATCH_BAND_BOT) {
         const half = 10; // % of arena width
         if (it.x >= basketRef.current - half && it.x <= basketRef.current + half) {
-          nc++;
+          if (it.emoji === "💔") { nm++; } else { nc++; }
           return false;
         }
       }
       if (it.y > ARENA_H) {
-        nm++;
-        return false;
+        return false; // letting treats fall past is fine; only caught 💔 penalises
       }
       return true;
     });
@@ -146,7 +148,7 @@ export function CatchGame({ onPoints }: { onPoints: (n: number) => void }) {
       <div className="flex w-full max-w-sm items-center justify-between rounded-2xl bg-maroon/5 px-4 py-2 text-sm font-semibold text-maroon">
         <span>⏱ {timeLeft}s</span>
         <span>Caught: {caught}</span>
-        <span>Missed: {missed}</span>
+        <span>💔 Oops: {missed}</span>
       </div>
 
       {/* Start screen */}
@@ -155,7 +157,7 @@ export function CatchGame({ onPoints }: { onPoints: (n: number) => void }) {
           <p className="text-3xl">🍫</p>
           <h3 className="mt-2 font-serif text-2xl text-maroon">Catch the Treats!</h3>
           <p className="mt-2 text-sm text-muted">
-            Move your finger (or mouse) to move the basket. Catch chocolates and hearts — don&apos;t miss the 💖!
+            Move your finger (or mouse) to catch the treats falling from above. Grab 🍫 🍬 💖 🧁 — but <strong>avoid 💔 broken hearts</strong>, they cost you a point!
           </p>
           <button className="btn-primary mt-4 w-full" onClick={start}>
             Start Game
