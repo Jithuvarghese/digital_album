@@ -40,7 +40,7 @@ export function Families() {
                       src={groupPhoto}
                       alt={label}
                       loading="lazy"
-                      className="h-48 w-full object-cover sm:h-56"
+                      className="h-48 w-full object-cover object-top sm:h-56"
                     />
                   </div>
                 )}

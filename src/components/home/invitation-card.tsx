@@ -61,7 +61,7 @@ export function InvitationCard() {
     <section className="w-full px-3 py-8 sm:px-4">
       {/* Three-column: portrait | invitation | portrait */}
       {/* On screens < 400px this stacks; on normal phones (≥ 400px) it stays side by side */}
-      <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 min-[500px]:flex-row min-[500px]:items-end min-[500px]:justify-center min-[500px]:gap-3 sm:gap-6">
+      <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 min-[500px]:flex-row min-[500px]:items-end min-[500px]:justify-center min-[500px]:gap-6 lg:gap-10">
 
         <ArchPortrait src={bride.photo} name={bride.name} nickname={bride.nickname} label="The Bride" side="left" />
 
@@ -71,7 +71,7 @@ export function InvitationCard() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="kasavu-frame w-full rounded-[24px] bg-paper px-6 py-8 text-center shadow-card min-[420px]:min-w-0 min-[420px]:flex-1"
+          className="kasavu-frame w-full rounded-[24px] bg-paper px-6 py-8 text-center shadow-card min-[500px]:min-w-0 min-[500px]:flex-[1.8]"
         >
           <div className="kasavu-line w-full" />
           <Jasmine size={20} className="mx-auto mt-5 text-gold" />
