@@ -106,13 +106,13 @@ export function MemoryMatch({ onPoints }: { onPoints: (n: number) => void }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <p className="text-sm font-semibold text-muted">Moves: {moves}</p>
-      <div className="grid grid-cols-4 gap-2.5 px-2">
+      <div className="grid w-full max-w-xs grid-cols-4 gap-2 px-2 sm:max-w-sm sm:gap-2.5">
         {cards.map((c) => (
           <motion.button
             key={c.id}
             onClick={() => flip(c.id)}
             whileTap={{ scale: 0.92 }}
-            className={`flex h-16 w-16 items-center justify-center rounded-2xl text-2xl ring-1 transition ${
+            className={`flex aspect-square w-full items-center justify-center rounded-2xl text-2xl ring-1 transition ${
               c.matched
                 ? "bg-green-50 ring-green-200 opacity-50"
                 : c.flipped

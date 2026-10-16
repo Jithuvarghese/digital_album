@@ -42,11 +42,11 @@ export function Countdown({ large = false }: { large?: boolean }) {
   ];
   return (
     <div role="timer" aria-label={t("hero.countdown")}>
-      <div className={`flex justify-center ${large ? "gap-10" : "gap-3 sm:gap-5"}`}>
+      <div className={`flex justify-center ${large ? "gap-10" : "gap-1.5 sm:gap-4"}`}>
         {parts.map(([n, key]) => (
-          <div key={key} className={`flex flex-col items-center rounded-2xl bg-paper/80 ring-1 ring-gold/30 ${large ? "min-w-[180px] px-6 py-6" : "min-w-[68px] px-2 py-3"}`}>
+          <div key={key} className={`flex flex-col items-center rounded-2xl bg-paper/80 ring-1 ring-gold/30 ${large ? "min-w-[180px] px-6 py-6" : "w-[62px] px-1.5 py-3 sm:w-[76px]"}`}>
             <span className={`font-serif tabular-nums text-maroon ${large ? "text-8xl" : "text-3xl sm:text-4xl"}`}>{String(n).padStart(2, "0")}</span>
-            <span className={`uppercase tracking-widest text-muted ${large ? "text-xl" : "text-[10px]"}`}>{t(key)}</span>
+            <span className={`uppercase tracking-widest text-muted ${large ? "text-xl" : "text-[9px] sm:text-[10px]"}`}>{t(key)}</span>
           </div>
         ))}
       </div>
